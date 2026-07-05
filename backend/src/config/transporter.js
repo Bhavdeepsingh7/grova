@@ -12,8 +12,12 @@ const transportOptions = {
   host: env.emailHost,
   port: env.emailPort,
   secure: env.emailSecure,
-  family: 4,
   connectionTimeout: env.emailSendTimeoutMs,
+  socketTimeout: env.emailSendTimeoutMs,
+  family: 4,
+  lookup(hostname, options, callback) {
+    return dns.lookup(hostname, { family: 4, all: false }, callback);
+  },
 };
 
 const transporter = nodemailer.createTransport(transportOptions);
