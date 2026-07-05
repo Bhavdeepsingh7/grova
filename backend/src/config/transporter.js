@@ -9,8 +9,12 @@ if (!EMAIL || !EMAIL_PASSWORD) {
     throw new Error("Missing EMAIL or EMAIL_PASSWORD environment variables");
 }
 
+
 const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    family: 4,          // Force IPv4
     auth: {
         user: EMAIL,
         pass: EMAIL_PASSWORD
