@@ -14,7 +14,7 @@ This repository contains a production-ready Express backend for receiving consul
 - Compression
 - Health checks
 - Graceful shutdown
-- Simple SMTP email delivery using Nodemailer
+- Multiple email provider support: Resend, Brevo, SendGrid
 
 ## Environment Variables
 
@@ -23,11 +23,8 @@ Copy `.env.example` to `.env` and set the following values:
 - `NODE_ENV`
 - `PORT`
 - `CORS_ALLOWLIST`
-- `EMAIL_HOST`
-- `EMAIL_PORT`
-- `EMAIL_SECURE`
-- `EMAIL_USER`
-- `EMAIL_PASS`
+- `EMAIL_PROVIDER`
+- `RESEND_API_KEY` or `BREVO_API_KEY` or `SENDGRID_API_KEY`
 - `EMAIL_FROM`
 - `EMAIL_TO`
 

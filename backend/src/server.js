@@ -1,9 +1,6 @@
 import app from "./app.js";
 import env from "./config/env.js";
 import logger from "./config/logger.js";
-import transporter from "./config/transporter.js";
-
-await transporter.verify();
 
 const server = app.listen(env.port, () => {
   logger.info({ port: env.port }, "Server started");
