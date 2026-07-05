@@ -1,19 +1,17 @@
-import dotenv from "dotenv";
 import nodemailer from "nodemailer";
-import dns from "node:dns";
+import env from "./env.js";
 
-dotenv.config();
+const transportOptions = {
+  auth: {
+    user: env.emailUser,
+    pass: env.emailPass,
+  },
+  host: env.emailHost,
+  port: env.emailPort,
+  secure: env.emailSecure,
+  connectionTimeout: env.emailSendTimeoutMs,
+};
 
-dns.setDefaultResultOrder("ipv4first");
-
-const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: false,
-    auth: {
-        user: process.env.EMAIL,
-        pass: process.env.EMAIL_PASSWORD
-    }
-});
+const transporter = nodemailer.createTransport(transportOptions);
 
 export default transporter;

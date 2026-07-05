@@ -1,8 +1,10 @@
 import express from "express";
-import {submitConsultation} from "../controllers/consultationController.js";
+import validateBody from "../middleware/validateBody.js";
+import consultationSchema from "../validators/consultationValidator.js";
+import { submitConsultation } from "../controllers/consultationController.js";
 
 const router = express.Router();
 
-router.post("/", submitConsultation);
+router.post("/", validateBody(consultationSchema), submitConsultation);
 
 export default router;
