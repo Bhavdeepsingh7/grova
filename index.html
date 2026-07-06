@@ -1091,7 +1091,7 @@ const API_URL =
     window.location.hostname === "localhost" ||
     window.location.hostname === "127.0.0.1"
         ? "http://localhost:5000"
-        : "https://YOUR_BACKEND_URL";
+        : "https://grova-54xj.onrender.com";
 
 
 (function(){
@@ -1325,17 +1325,19 @@ document.querySelectorAll('#budgetGrid .budget-card').forEach(card => {
 });
 
 async function submitConsultForm() {
-    const data = {
-        name: document.getElementById("fullName").value,
-        email: document.getElementById("email").value,
-        phone: document.getElementById("phone").value,
-        company: document.getElementById("company").value,
-        service: document.getElementById("serviceGrid").value,
-        budget: document.getElementById("budgetGrid").value,
-        timeline: document.getElementById("contactTime").value,
-        message: document.getElementById("message").value
-    };
+const data = {
+    name: document.getElementById("fullName").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    phone: document.getElementById("phone").value.trim(),
+    company: document.getElementById("company").value.trim(),
 
+    // <-- FIX
+    service: consultState.services.join(", "),
+    budget: consultState.budget,
+
+    timeline: document.getElementById("contactTime").value,
+    message: document.getElementById("message").value.trim()
+};
     console.log("Submitting consultation:", data);
 
     try {
